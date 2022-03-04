@@ -22,9 +22,9 @@ public class CategoryRepository : RepositoryBase<Category>, ICategoryRepository
              .ToListAsync();
 
 
-    public async Task<Category> GetCategoryAsync(int categoryId, bool trackChanges) =>
+    public async Task<Category?> GetCategoryAsync(int categoryId, bool trackChanges) =>
         await FindByCondition(c => c.Id.Equals(categoryId), trackChanges)
-             .FirstOrDefaultAsync() ?? new Category();
+             .FirstOrDefaultAsync();
 
 
 
