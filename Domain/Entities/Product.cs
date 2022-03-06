@@ -16,7 +16,7 @@ namespace Domain.Entities
 
         public decimal UnitPrice { get; set; }
 
-        public int CategoryID { get; set; }
+        public int CategoryId { get; set; }
 
         public Category? Category { get; set; }
 

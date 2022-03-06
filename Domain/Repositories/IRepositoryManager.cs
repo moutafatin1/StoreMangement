@@ -8,5 +8,6 @@ namespace Domain.Repositories;
 public interface IRepositoryManager
 {
     ICategoryRepository Category { get; }
+    IProductRepository Product { get; }
     Task SaveAsync();
 }
