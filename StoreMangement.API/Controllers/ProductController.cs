@@ -27,4 +27,13 @@ public class ProductController : ControllerBase
 
     }
 
+
+    [HttpGet("{productId}")]
+    public async Task<IActionResult> GetProductById(int categoryId, int productId)
+    {
+        var product = await _sender.Send(new GetProductByIdQuery(categoryId, productId, TrackChanges: false));
+
+        return Ok(product);
+    }
+
 }
