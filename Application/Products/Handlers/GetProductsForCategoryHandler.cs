@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Common;
 using Application.Common.Exceptions;
 
 namespace Application.Products.Handlers;
@@ -10,18 +11,18 @@ public class GetProductsForCategoryHandler : IRequestHandler<GetProductsForCateg
 {
     private readonly IRepositoryManager _repository;
     private readonly IMapper _mapper;
+    private readonly Helper _helper;
 
-    public GetProductsForCategoryHandler(IRepositoryManager repository, IMapper mapper)
+    public GetProductsForCategoryHandler(IRepositoryManager repository, IMapper mapper, Helper helper)
     {
         _repository = repository;
         _mapper = mapper;
+        _helper = helper;
     }
     public async Task<IEnumerable<ProductDto>> Handle(GetProductsForCategoryQuery request, CancellationToken cancellationToken)
     {
-        var category = await _repository.Category.GetCategoryAsync(request.CategoryId, request.TrackChanges);
 
-        if (category is null)
-            throw new CategoryNotFoundException(request.CategoryId);
+        await _helper.CheckIfCategoryExists(request.CategoryId, request.TrackChanges);
 
         var products = await _repository.Product.GetProductsAsync(request.CategoryId, request.TrackChanges);
 
