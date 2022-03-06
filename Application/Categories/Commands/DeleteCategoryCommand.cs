@@ -5,5 +5,5 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Categories.Commands;
-public record DeleteCategoryCommand(int CategoryId, bool trackChanges) : IRequest;
+public record DeleteCategoryCommand(int CategoryId, bool TrackChanges) : IRequest;
 

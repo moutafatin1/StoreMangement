@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Domain.Entities;
 
 namespace Application.Common;
@@ -20,6 +16,14 @@ public class Helper
         var category = await _repository.Category.GetCategoryAsync(categoryId, trackChanges);
         if (category is null)
             throw new CategoryNotFoundException(categoryId);
+    }
+
+    public async Task<Category> GetCategoryAndCheckIfExists(int categoryId, bool trackChanges)
+    {
+        var category = await _repository.Category.GetCategoryAsync(categoryId, trackChanges);
+        if (category is null)
+            throw new CategoryNotFoundException(categoryId);
+        return category;
     }
 
 

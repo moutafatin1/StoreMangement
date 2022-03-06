@@ -9,17 +9,17 @@ namespace Application.Categories.Handlers;
 public class DeleteCategoryHandler : IRequestHandler<DeleteCategoryCommand, Unit>
 {
     private readonly IRepositoryManager _repository;
+    private readonly Helper _helper;
 
-    public DeleteCategoryHandler(IRepositoryManager repository)
+    public DeleteCategoryHandler(IRepositoryManager repository, Helper helper)
     {
         _repository = repository;
+        _helper = helper;
     }
     public async Task<Unit> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
     {
-        var category = await _repository.Category.GetCategoryAsync(request.CategoryId, request.trackChanges);
+        var category = await _helper.GetCategoryAndCheckIfExists(request.CategoryId, request.TrackChanges);
 
-        if (category is null)
-            throw new CategoryNotFoundException(request.CategoryId);
 
         _repository.Category.DeleteCategory(category);
         await _repository.SaveAsync();

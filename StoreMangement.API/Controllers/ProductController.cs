@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Products.Commands;
 using Microsoft.AspNetCore.Mvc;
 
 namespace StoreMangement.API.Controllers;
@@ -28,12 +29,21 @@ public class ProductController : ControllerBase
     }
 
 
-    [HttpGet("{productId}")]
+    [HttpGet("{productId}", Name = "ProductById")]
     public async Task<IActionResult> GetProductById(int categoryId, int productId)
     {
         var product = await _sender.Send(new GetProductByIdQuery(categoryId, productId, TrackChanges: false));
 
         return Ok(product);
+    }
+
+
+    [HttpPost]
+    public async Task<IActionResult> CreateProduct(int categoryId, [FromBody] CreateProductDto productForCreation)
+    {
+        var product = await _sender.Send(new CreateProductCommand(categoryId, TrackChanges: false, productForCreation));
+
+        return CreatedAtRoute("ProductById", new { categoryId, productId = product.Id }, product);
     }
 
 }

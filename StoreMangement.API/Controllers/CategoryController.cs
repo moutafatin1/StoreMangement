@@ -32,7 +32,7 @@ public class CategoryController : ControllerBase
     [HttpGet("{categoryId:int}", Name = "CategoryById")]
     public async Task<IActionResult> GetCategoryById(int categoryId)
     {
-        var category = await _sender.Send(new GetCategoryByIdQuery(categoryId, trackChanges: false));
+        var category = await _sender.Send(new GetCategoryByIdQuery(categoryId, TrackChanges: false));
 
         return Ok(category);
     }
@@ -63,7 +63,7 @@ public class CategoryController : ControllerBase
     [HttpDelete("{categoryId:int}")]
     public async Task<IActionResult> DeleteCategory(int categoryId)
     {
-        await _sender.Send(new DeleteCategoryCommand(categoryId, trackChanges: false));
+        await _sender.Send(new DeleteCategoryCommand(categoryId, TrackChanges: false));
 
         return NoContent();
     }

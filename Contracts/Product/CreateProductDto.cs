@@ -5,4 +5,4 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Contracts.Product;
-public record CreateProductDto(int CategoryId, string Name, string Description, decimal UnitPrice);
+public record CreateProductDto(string Name, string Description, decimal UnitPrice);

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Common;
-using Application.Common.Exceptions;
+﻿
 
 namespace Application.Products.Handlers;
 public class GetProductsForCategoryHandler : IRequestHandler<GetProductsForCategoryQuery, IEnumerable<ProductDto>>

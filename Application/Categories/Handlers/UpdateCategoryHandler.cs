@@ -10,18 +10,17 @@ public class UpdateCategoryHandler : IRequestHandler<UpdateCategoryCommand, Unit
 {
     private readonly IRepositoryManager _repository;
     private readonly IMapper _mapper;
+    private readonly Helper _helper;
 
-    public UpdateCategoryHandler(IRepositoryManager repository, IMapper mapper)
+    public UpdateCategoryHandler(IRepositoryManager repository, IMapper mapper, Helper helper)
     {
         _repository = repository;
         _mapper = mapper;
+        _helper = helper;
     }
     public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
     {
-        var categoryEntity = await _repository.Category.GetCategoryAsync(request.CategoryId, request.TrackChanges);
-
-        if (categoryEntity is null)
-            throw new CategoryNotFoundException(request.CategoryId);
+        var categoryEntity = await _helper.GetCategoryAndCheckIfExists(request.CategoryId, request.TrackChanges);
 
         _mapper.Map(request.Category, categoryEntity);
 
