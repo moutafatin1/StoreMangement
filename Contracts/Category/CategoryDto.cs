@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Contracts.Product;
 
 namespace Contracts.Category
 {
@@ -13,5 +14,6 @@ namespace Contracts.Category
         public string? Name { get; init; }
 
         public string? Description { get; init; }
+
     }
 }

@@ -19,5 +19,8 @@ public class MappingProfile : Profile
         CreateMap<CreateProductDto, Product>();
         CreateMap<UpdateProductDto, Product>();
 
+        CreateMap<Sale, SaleDto>();
+        CreateMap<SaleDetails, SaleDetailsDto>();
+
     }
 }

@@ -38,6 +38,14 @@ public class ProductController : ControllerBase
     }
 
 
+    [HttpGet("~/api/products")]
+    public async Task<IActionResult> GetAllProducts()
+    {
+        var products = await _sender.Send(new GetAllProductsQuery(trackChanges: false));
+
+        return Ok(products);
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateProduct(int categoryId, [FromBody] CreateProductDto productForCreation)
     {

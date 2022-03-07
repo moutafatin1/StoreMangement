@@ -13,7 +13,7 @@ public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
     }
 
-    public async Task<List<Product>> GetProductsAsync(int categoryId, bool trackChanges) =>
+    public async Task<List<Product>> GetProductsForCategoryAsync(int categoryId, bool trackChanges) =>
         await FindByCondition(p => p.CategoryId.Equals(categoryId), trackChanges).ToListAsync();
 
 
@@ -21,6 +21,10 @@ public class ProductRepository : RepositoryBase<Product>, IProductRepository
         (int categoryId, int productId, bool trackChanges) =>
                  await FindByCondition(p => p.CategoryId.Equals(categoryId) && p.Id.Equals(productId), trackChanges).FirstOrDefaultAsync();
 
+
+
+    public async Task<List<Product>> GetAllProducts(bool trackChanges) =>
+        await FindAll(trackChanges).ToListAsync();
 
 
     public void CreateProductForCategory(int categoryId, Product product)

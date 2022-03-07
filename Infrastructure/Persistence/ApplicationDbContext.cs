@@ -18,5 +18,8 @@ namespace Infrastructure.Persistence
 
         public DbSet<Category> Categories => Set<Category>();
         public DbSet<Product> Products => Set<Product>();
+        public DbSet<Sale> Sales => Set<Sale>();
+        public DbSet<SaleDetails> SalesDetails => Set<SaleDetails>();
+
     }
 }

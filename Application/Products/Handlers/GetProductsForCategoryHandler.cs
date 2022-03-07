@@ -18,7 +18,7 @@ public class GetProductsForCategoryHandler : IRequestHandler<GetProductsForCateg
 
         await _helper.CheckIfCategoryExists(request.CategoryId, request.TrackChanges);
 
-        var products = await _repository.Product.GetProductsAsync(request.CategoryId, request.TrackChanges);
+        var products = await _repository.Product.GetProductsForCategoryAsync(request.CategoryId, request.TrackChanges);
 
         var productsDto = _mapper.Map<List<ProductDto>>(products);
 

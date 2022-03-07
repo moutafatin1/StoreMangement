@@ -14,4 +14,6 @@ global using Contracts.Product;
 global using Application.Products.Commands;
 global using Application.Products.Queries;
 
+global using Contracts.Sale;
+global using Application.Sales.Queries;
 

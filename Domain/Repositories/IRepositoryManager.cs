@@ -9,5 +9,6 @@ public interface IRepositoryManager
 {
     ICategoryRepository Category { get; }
     IProductRepository Product { get; }
+    ISaleRepository Sale { get; }
     Task SaveAsync();
 }
