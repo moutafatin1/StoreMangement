@@ -18,6 +18,7 @@ public class SaleRepository : RepositoryBase<Sale>, ISaleRepository
 
     public void CreateSale(Sale sale) => Create(sale);
 
-
+    public async Task<Sale?> GetSale(int saleId, bool trackChanges) =>
+        await FindByCondition(s => s.Id.Equals(saleId), trackChanges).Include(s => s.SaleDetails).FirstOrDefaultAsync();
 
 }
