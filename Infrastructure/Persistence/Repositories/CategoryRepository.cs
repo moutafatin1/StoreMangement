@@ -17,7 +17,7 @@ public class CategoryRepository : RepositoryBase<Category>, ICategoryRepository
 
 
     public async Task<IEnumerable<Category>> GetAllCategoriesAsync(bool trackChanges) =>
-        await FindAll(trackChanges)
+        await FindAll(trackChanges).Include(c => c.Products)
              .OrderBy(c => c.Name)
              .ToListAsync();
 

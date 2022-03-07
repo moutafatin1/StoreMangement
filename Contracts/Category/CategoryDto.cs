@@ -15,5 +15,8 @@ namespace Contracts.Category
 
         public string? Description { get; init; }
 
+        public ICollection<ProductDto>? Products { get; set; }
+
+
     }
 }
